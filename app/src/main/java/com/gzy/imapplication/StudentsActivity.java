@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +25,14 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+// git 精髓
+// S/L大法
+// save 保存 存档   l  load  加载 读取    （存档）
 
 public class StudentsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView.Adapter adapter;
     private List<Student> dataList = new ArrayList<>();
 
@@ -38,6 +43,13 @@ public class StudentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_students);
 
         recyclerView = findViewById(R.id.recyclerView);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+
+        swipeRefreshLayout.setColorSchemeResources(
+                R.color.colorAccent,
+                R.color.colorPrimary,
+                R.color.colorPrimaryDark
+        );
 
         adapter = new StudentAdapter(this,dataList);
 
@@ -49,6 +61,13 @@ public class StudentsActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerView.setHasFixedSize(true);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+        });
 
         // 异步
         loadData();
@@ -83,6 +102,7 @@ public class StudentsActivity extends AppCompatActivity {
                     students.add(student);
                 }
 
+                dataList.clear();
                 dataList.addAll(students);
 
 
@@ -90,6 +110,7 @@ public class StudentsActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
 

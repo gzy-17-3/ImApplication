@@ -35,4 +35,22 @@
 
         </androidx.recyclerview.widget.RecyclerView>
     ```
-3.
+3. ....   https://www.jianshu.com/p/82334cfc541a
+
+# RecycleView 下拉刷新的功能
+
+1. SwipeRefreshLayout
+2. 在布局里将 RecycleView 节点包裹起来
+3. findViewByid
+4. setOnRefreshListener
+5. 在监听里调用加载数据的方法
+6. 先 dataList.clear 再 dataList.addAll(students);
+7. swipeRefreshLayout.setRefreshing(false); 关掉转圈
+8. 其他：设置颜色
+    ```
+            swipeRefreshLayout.setColorSchemeResources(
+                    R.color.colorAccent,
+                    R.color.colorPrimary,
+                    R.color.colorPrimaryDark
+            );
+    ```
