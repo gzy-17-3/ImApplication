@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/tv_sid"
+            android:text="sid"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:text="name"
+            android:layout_alignLeft="@id/tv_sid"
+            android:layout_below="@+id/tv_sid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="1dp"
+            android:text="markmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmarkmark"
+            android:id="@+id/tv_mark"
+            android:layout_alignTop="@id/tv_sid"
+            android:layout_toRightOf="@id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,6 +1,10 @@
 package com.gzy.imapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -23,12 +27,31 @@ import okhttp3.Response;
 
 public class StudentsActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<Student> dataList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students);
 
+        recyclerView = findViewById(R.id.recyclerView);
 
+        adapter = new StudentAdapter(this,dataList);
+
+        recyclerView.setAdapter(adapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        recyclerView.setHasFixedSize(true);
+
+        // 异步
+        loadData();
     }
 
 
@@ -48,20 +71,27 @@ public class StudentsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-//                Gson gson=new Gson();
                 String json = response.body().string();
                 Log.d("okhttp_success",json);
                 JSONObject jsonObject = JSON.parseObject(json);
                 JSONArray content = jsonObject.getJSONArray("content");
                 List<Student> students = new ArrayList<>();
-//                content.toJavaObject(new TypeReference<List<Student>>(Student.class) {
-//                });
 
                 for (int i = 0; i < content.size(); i++) {
                     JSONObject jsonObject1 = content.getJSONObject(i);
                     Student student = jsonObject1.toJavaObject(Student.class);
                     students.add(student);
                 }
+
+                dataList.addAll(students);
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
                 Log.e("TAG", "onResponse: " + students.size() );
             }
