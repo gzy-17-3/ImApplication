@@ -37,7 +37,7 @@
     ```
 3. ....   https://www.jianshu.com/p/82334cfc541a
 
-# RecycleView 下拉刷新的功能
+# RecycleView 下拉刷新的功能  https://www.jianshu.com/p/96f14f6a5bb4
 
 1. SwipeRefreshLayout
 2. 在布局里将 RecycleView 节点包裹起来
