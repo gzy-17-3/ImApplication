@@ -121,13 +121,27 @@ public class Student2Activity extends AppCompatActivity {
 
 class QKAdapter extends BaseQuickAdapter<Student, BaseViewHolder>{
     public QKAdapter(@Nullable List<Student> data) {
-        super(R.layout.item_student, data);
+        super(R.layout.item_student_avatar, data);
     }
     @Override
     protected void convert(@NonNull BaseViewHolder helper, Student item) {
+
+        String genderMsg = "";
+
+        if (item.getGender() == null){
+            genderMsg = "~";
+        }else if (item.getGender() == 1){
+            genderMsg = "女";
+        }else if (item.getGender() == 2){
+            genderMsg = "男";
+        }else{
+            genderMsg = "~";
+        }
+
+        String otherMsg = "年龄：" + item.getAge() + " 性别：" + genderMsg + " 学号：" +item.getSid();
         helper.setText(R.id.tv_name,item.getName());
-        helper.setText(R.id.tv_sid,item.getSid());
-        helper.setText(R.id.tv_mark,item.getMark());
+        helper.setText(R.id.tv_other,otherMsg);
+
     }
 }
 

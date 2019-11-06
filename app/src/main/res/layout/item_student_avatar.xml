@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <LinearLayout
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="60dp">
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_marginBottom="2.5dp"
+            android:text="张三"
+            android:gravity="left|bottom"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="#303030"
+            android:textSize="7.5pt"
+            />
+        <TextView
+            android:id="@+id/tv_other"
+            android:layout_marginTop="2.5dp"
+            android:gravity="left|top"
+            android:text="性别：*"
+            android:textColor="#7C7777"
+            android:layout_weight="1"
+            android:textSize="5.5pt"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
