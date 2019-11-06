@@ -32,6 +32,7 @@ public class Student2Activity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
+    SwipeRefreshLayout swipeRefreshLayout;
     private List<Student> dataList = new ArrayList<>();
 
     QKAdapter qkAdapter;
@@ -42,6 +43,7 @@ public class Student2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         recyclerView = findViewById(R.id.recyclerView);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -53,6 +55,13 @@ public class Student2Activity extends AppCompatActivity {
         qkAdapter = new QKAdapter(dataList);
         recyclerView.setAdapter(qkAdapter);
 
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+        });
 
         loadData();
     }
@@ -69,6 +78,12 @@ public class Student2Activity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("okhttp_error",e.getMessage());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
 
             @Override
@@ -93,7 +108,7 @@ public class Student2Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         qkAdapter.notifyDataSetChanged();
-//                        swipeRefreshLayout.setRefreshing(false);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
 
