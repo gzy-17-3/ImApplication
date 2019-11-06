@@ -11,10 +11,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -142,6 +145,15 @@ class QKAdapter extends BaseQuickAdapter<Student, BaseViewHolder>{
         helper.setText(R.id.tv_name,item.getName());
         helper.setText(R.id.tv_other,otherMsg);
 
+
+        ImageView avatar = helper.getView(R.id.iv_avatar);
+
+        Glide.with(mContext)
+                .load(item.getMark())
+                .centerCrop()
+                .placeholder(R.mipmap.avatar_placeholder)
+                .transform(new CircleCrop())
+                .into(avatar);
     }
 }
 

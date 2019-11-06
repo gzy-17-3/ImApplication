@@ -34,6 +34,10 @@ dependencies {
     // 功能强大的  RecyclerViewAdapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47-androidx'
 
+    // 集成 图片加载框架
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
