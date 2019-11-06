@@ -41,15 +41,15 @@ public class StudentListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
-
-
         adapter = new StudentListAdapter(dataList);
 
+        // 设置布局管理器
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // 设置 适配器(adapter)
         recyclerView.setAdapter(adapter);
 
 
-
+        // 设置监听 下拉刷新事件
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -57,9 +57,11 @@ public class StudentListActivity extends AppCompatActivity {
             }
         });
 
+        // 设置监听 上拉加载更多的事件
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
+                // 加载下一页数据
                 loadMore(currentPage+1);
             }
         },recyclerView);
@@ -87,6 +89,7 @@ public class StudentListActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        // 加载更多失败
                         adapter.loadMoreFail();
                     }
                 });
@@ -110,8 +113,11 @@ public class StudentListActivity extends AppCompatActivity {
                 // 数据有了
                 // 如果没有数据  则  .size() = 0
 
+
+                // 拼接数据到原有数据后方
                 dataList.addAll(studentList);
 
+                // 加载成功，当前页码 + 1
                 currentPage += 1;
 
                 runOnUiThread(new Runnable() {
@@ -119,8 +125,11 @@ public class StudentListActivity extends AppCompatActivity {
                     public void run() {
 
                         if (studentList.size() == 0) {
+                            // 没有更多数据了，
                             adapter.loadMoreEnd();
                         }else{
+                            // 加载数据成功
+                            // 应该还有更多的数据
                             adapter.loadMoreComplete();
                         }
 
@@ -146,6 +155,12 @@ public class StudentListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("okhttp_error",e.getMessage());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);    // 加载失败也需要 结束下拉刷新空间的加载状态
+                    }
+                });
             }
 
             @Override
@@ -166,17 +181,16 @@ public class StudentListActivity extends AppCompatActivity {
                 // 数据有了
                 // 如果没有数据  则  .size() = 0
 
-                dataList.clear();
-                dataList.addAll(studentList);
-
+                dataList.clear();           //  清空数据，避免重复拼接
+                dataList.addAll(studentList);   // 拼接从网络加载的数据
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        currentPage = 0;
-                        adapter.setNewData(dataList);
-                        swipeRefreshLayout.setRefreshing(false);
+                        currentPage = 0;    // 重置页码
+                        adapter.setNewData(dataList);   // 重置 adapter 的状态
+                        swipeRefreshLayout.setRefreshing(false);    // 结束下拉刷新空间的加载状态
                     }
                 });
 
