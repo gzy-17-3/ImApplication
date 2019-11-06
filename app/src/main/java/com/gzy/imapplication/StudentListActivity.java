@@ -1,9 +1,12 @@
 package com.gzy.imapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -21,10 +24,20 @@ import okhttp3.Response;
 
 public class StudentListActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+    private List<Student> dataList = new ArrayList<>();
+    private StudentListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        adapter = new StudentListAdapter(dataList);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         loadData();
     }
@@ -61,6 +74,16 @@ public class StudentListActivity extends AppCompatActivity {
 
                 // 数据有了
                 // 如果没有数据  则  .size() = 0
+
+//                dataList.clear();
+                dataList.addAll(studentList);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
                 Log.w("TAG", "onResponse: " + studentList.size());
 
