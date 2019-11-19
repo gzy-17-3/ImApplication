@@ -1,4 +1,4 @@
-package com.gzy.imapplication.net.core;
+package com.gzy.imapplication.net;
 
 public interface URLSet {
 
@@ -6,7 +6,7 @@ public interface URLSet {
 
     interface Auth{
 
-        String PATH = "/auth";
+        String PATH = HOST + "/auth";
 
         String Login = PATH + "/login";
         String Signin = PATH + "/signin";
