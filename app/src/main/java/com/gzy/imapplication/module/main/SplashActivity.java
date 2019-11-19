@@ -2,6 +2,7 @@ package com.gzy.imapplication.module.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,7 +12,9 @@ import com.alibaba.fastjson.JSON;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Token;
+import com.gzy.imapplication.module.auth.LoginActivity;
 import com.gzy.imapplication.module.base.BaseActivity;
+import com.gzy.imapplication.module.home.HomeActivity;
 import com.gzy.imapplication.utils.SharedPreferencesUtils;
 
 public class SplashActivity extends BaseActivity {
@@ -39,19 +42,26 @@ public class SplashActivity extends BaseActivity {
         // 判断 token 是否为空 如果 为空
         if (Auth.isLogin(this)){
             //  如果已经登陆 跳主界面
-            Toast.makeText(this, "已登录", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+
+
         }else{
             //  未登录 否则跳转到 登陆界面
-            Toast.makeText(this, "未登录", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+
+
         }
 
-
-
-
-
-
-
-
+        runOnUiThread(10, new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        });
     }
 
 }
