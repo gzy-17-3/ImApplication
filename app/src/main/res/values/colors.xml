@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <!--  主色调  -->
+    <color name="colorPrimary">#CD000A</color>
+    <!--  主色调 （暗色）  -->
+    <color name="colorPrimaryDark">#850009</color>
+    <!--  高亮色   -->
+    <color name="colorAccent">#536DFE</color>
+    <!--  主色调  亮 -->
+    <color name="colorPrimary_light">#ED000C</color>
+    <!--  主文本颜色  -->
+    <color name="colorPrimary_text">#212121</color>
+    <!--  子标题颜色   -->
+    <color name="colorSecondary_text">#757575</color>
+    <!--  图标颜色  -->
+    <color name="colorIcons">#FFFFFF</color>
+    <!--  分割线颜色  -->
+    <color name="colorDivider">#BDBDBD</color>
 </resources>

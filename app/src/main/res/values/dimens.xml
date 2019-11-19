@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="dp_20">20dp</dimen>
+
+
+
     <dimen name="sp_20">20sp</dimen>
     <dimen name="sp_30">30sp</dimen>
+    <dimen name="sp_25">25sp</dimen>
+
+
+
+
+    <dimen name="sp_nav_title">25sp</dimen>
 </resources>
