@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".module.auth.LoginActivity">
+    tools:context=".module.auth.SigninActivity">
 
 
-<!--   action bar  操作栏  -->
-<!--   navigation bar 导航栏  -->
+    <!--   action bar  操作栏  -->
+    <!--   navigation bar 导航栏  -->
 
     <RelativeLayout
         android:background="@color/colorPrimary"
@@ -19,12 +19,21 @@
         <TextView
             android:textSize="@dimen/sp_25"
             android:textColor="@color/colorIcons"
-            android:text="@string/login"
+            android:text="@string/signin"
             android:id="@+id/nav_title"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </TextView>
+
+        <Button
+            android:background="@drawable/ic_keyboard_backspace_black"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            >
+
+        </Button>
 
     </RelativeLayout>
 
@@ -43,28 +52,25 @@
         style="@style/form_row"
         android:inputType="textPassword"
         >
-<!--        android:password="true"-->
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_password2"
+        android:hint="请再次输入密码"
+        style="@style/form_row"
+        android:inputType="textPassword"
+        >
     </EditText>
 
     <Button
+        android:onClick="onClickSignin"
         style="@style/form_row"
-        android:text="@string/login"
+        android:text="@string/signin"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorIcons"
         android:textSize="@dimen/sp_20"
         >
 
     </Button>
-
-    <TextView
-        android:onClick="onClickSignin"
-        android:layout_gravity="right"
-        android:text="快速注册"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_20"
-        >
-    </TextView>
 
 </LinearLayout>

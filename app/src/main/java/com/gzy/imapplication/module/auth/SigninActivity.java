@@ -6,19 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.gzy.imapplication.R;
-import com.gzy.imapplication.module.base.BaseActivity;
 
-public class LoginActivity extends BaseActivity {
+public class SigninActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.activity_signin);
     }
 
-
     public void onClickSignin(View view) {
-
+        //
     }
 }
