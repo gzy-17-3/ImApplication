@@ -31,6 +31,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
+            android:onClick="onClickBack"
             >
 
         </Button>
@@ -66,7 +67,7 @@
         android:onClick="onClickSignin"
         style="@style/form_row"
         android:text="@string/signin"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_normal_bg"
         android:textColor="@color/colorIcons"
         android:textSize="@dimen/sp_20"
         >

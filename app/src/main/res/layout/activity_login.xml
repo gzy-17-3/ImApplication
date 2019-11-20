@@ -49,7 +49,7 @@
     <Button
         style="@style/form_row"
         android:text="@string/login"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_normal_bg"
         android:textColor="@color/colorIcons"
         android:textSize="@dimen/sp_20"
         android:onClick="onClickLogin"

@@ -1,5 +1,7 @@
 package com.gzy.imapplication.module.base;
 
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
@@ -29,7 +31,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param delay 毫秒
      * @param action
      */
@@ -45,5 +46,9 @@ public class BaseActivity extends AppCompatActivity {
                 runOnUiThread(action);
             }
         });
+    }
+
+    public void onClickBack(View view) {
+        finish();
     }
 }
