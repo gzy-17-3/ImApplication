@@ -16,4 +16,6 @@
     <color name="colorIcons">#FFFFFF</color>
     <!--  分割线颜色  -->
     <color name="colorDivider">#BDBDBD</color>
+    <!--  背景色  -->
+    <color name="colorBackground">#F8F8F8</color>
 </resources>

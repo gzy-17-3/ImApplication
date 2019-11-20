@@ -32,4 +32,31 @@ public class HomeActivity extends BaseActivity {
             }
         });
     }
+
+
+    View currentTabbarItemView;
+
+    public void onClickTabbar(View view) {
+
+        if (currentTabbarItemView != null) {
+            currentTabbarItemView.setSelected(false);
+        }
+
+        view.setSelected(true);
+
+        currentTabbarItemView = view;
+
+        switch (view.getId() ){
+            case R.id.item_tabbar_contacts:
+
+                break;
+            case R.id.item_tabbar_message:
+
+                break;
+            case R.id.item_tabbar_mine:
+
+                break;
+        }
+
+    }
 }
