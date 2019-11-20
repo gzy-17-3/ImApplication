@@ -52,6 +52,7 @@
         android:background="@color/colorPrimary"
         android:textColor="@color/colorIcons"
         android:textSize="@dimen/sp_20"
+        android:onClick="onClickLogin"
         >
 
     </Button>

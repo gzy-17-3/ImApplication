@@ -11,7 +11,12 @@ import java.util.Map;
 public class AuthApi {
 
     public static void login(String phoneText, String password, XXModelCallback<Token> callback) {
+        Map<String, String> para = new HashMap<>();
 
+        para.put("phone",phoneText);
+        para.put("password",password);
+
+        XXURLUtils.shared.post(URLSet.Auth.Login, para, callback);
     }
 
     public static void signin(String phoneText, String password, XXModelCallback<Token> callback) {
