@@ -123,6 +123,25 @@
         android:layout_above="@id/ll_tabbar"
         android:layout_alignParentTop="true">
 
+        <fragment
+            android:id="@+id/f_MessageFragment"
+            android:name="com.gzy.imapplication.module.message.MessageFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+        <fragment
+            android:id="@+id/f_ContactsFragment"
+            android:name="com.gzy.imapplication.module.contacts.ContactsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+        <fragment
+            android:id="@+id/f_MineFragment"
+            android:name="com.gzy.imapplication.module.mine.MineFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+
     </FrameLayout>
 
 
