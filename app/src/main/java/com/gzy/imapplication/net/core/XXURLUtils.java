@@ -1,9 +1,12 @@
 package com.gzy.imapplication.net.core;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.Map;
 
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -15,15 +18,8 @@ public class XXURLUtils {
 
     public void post(String url, Map<String,String> parameter, Callback callback) {
 
-        FormBody.Builder paraB = new FormBody.Builder();
 
-        if (parameter != null && parameter.isEmpty() == false){
-            for (Map.Entry<String, String> entry : parameter.entrySet()) {
-                paraB.add(entry.getKey(),entry.getValue());
-            }
-        }
-
-        RequestBody para = paraB.build();
+        RequestBody para = RequestBody.create(MediaType.parse("application/json"), JSON.toJSONString(parameter));
 
         Request.Builder requestB = new Request.Builder();
 

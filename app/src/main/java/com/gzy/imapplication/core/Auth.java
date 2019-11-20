@@ -35,12 +35,19 @@ public class Auth {
     }
 
     /**
-     * 保存到本地 token 对象
+     * 保存到本地 token 对象， 登陆成功之后设置
      */
     public static void saveToken(Context context,Token token){
 
         String jsonString = JSON.toJSONString(token);
         SharedPreferencesUtils.setValue(context,"tokenjsonstr",jsonString);
 
+    }
+
+    /**
+     * 注销
+     */
+    public static void clearToken(Context context){
+        SharedPreferencesUtils.setValue(context,"tokenjsonstr","");
     }
 }

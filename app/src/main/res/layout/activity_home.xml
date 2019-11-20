@@ -13,4 +13,13 @@
         android:text="home"
         tools:layout_editor_absoluteX="113dp"
         tools:layout_editor_absoluteY="139dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:onClick="onClickLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注销"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="267dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

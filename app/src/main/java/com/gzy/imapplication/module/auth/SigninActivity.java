@@ -2,6 +2,8 @@ package com.gzy.imapplication.module.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,7 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.gzy.imapplication.R;
+import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
+import com.gzy.imapplication.model.Token;
+import com.gzy.imapplication.module.base.BaseActivity;
+import com.gzy.imapplication.module.home.HomeActivity;
 import com.gzy.imapplication.net.AuthApi;
 import com.gzy.imapplication.net.core.XXModelCallback;
 
@@ -18,11 +24,14 @@ import java.io.IOException;
 
 import okhttp3.Call;
 
-public class SigninActivity extends AppCompatActivity {
+public class SigninActivity extends BaseActivity {
 
     EditText et_phone;
     EditText et_password;
     EditText et_password2;
+
+    private IntentFilter intentFilter;
+    private LoginSucceedBroadcast loginSucceedBroadcast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,28 @@ public class SigninActivity extends AppCompatActivity {
         et_password = findViewById(R.id.et_password);
         et_password2 = findViewById(R.id.et_password2);
 
+        registerEvent();
+    }
+
+    private  void  registerEvent() {
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(LoginSucceedBroadcast.KEY);
+        loginSucceedBroadcast = new LoginSucceedBroadcast();
+
+        loginSucceedBroadcast.runnable = new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        };
+
+        registerReceiver(loginSucceedBroadcast,intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(loginSucceedBroadcast);
+        super.onDestroy();
     }
 
     public void onClickSignin(View view) {
@@ -65,7 +96,7 @@ public class SigninActivity extends AppCompatActivity {
             return;
         }
 
-        AuthApi.signin(phoneText,password, new XXModelCallback<Account>(Account.class) {
+        AuthApi.signin(phoneText,password, new XXModelCallback<Token>(Token.class) {
 
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
@@ -73,10 +104,28 @@ public class SigninActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponseData(Call call, Account model) {
+            public void onResponseData(Call call, Token model) {
                 Toast.makeText(SigninActivity.this, "注册成功。。", Toast.LENGTH_SHORT).show();
+
+                Auth.saveToken(SigninActivity.this,model);
+
+                jumpHome();
             }
         });
 
+    }
+
+    private void jumpHome() {
+        Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
+        startActivity(intent);
+
+        final Intent broadcastIntent = new Intent(LoginSucceedBroadcast.KEY);
+
+        runOnBackgroundThread(100, new Runnable() {
+            @Override
+            public void run() {
+                sendBroadcast(broadcastIntent);
+            }
+        });
     }
 }
