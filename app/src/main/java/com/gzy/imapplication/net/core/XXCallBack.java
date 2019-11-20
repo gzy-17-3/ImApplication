@@ -17,7 +17,7 @@ public abstract class XXCallBack implements Callback {
 
     @Override
     public void onFailure(final Call call, final IOException e) {
-        if (e instanceof XXJSONException){
+        if (e instanceof XXNetException){
             task = new AsyncToMainTask(this, new AsyncToMainTask.MainCall() {
                 @Override
                 public void runOnMain() {

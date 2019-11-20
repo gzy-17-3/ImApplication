@@ -1,10 +1,7 @@
 package com.gzy.imapplication.net.core;
 
 
-import android.text.TextUtils;
-
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
 
@@ -25,13 +22,13 @@ public abstract class XXModelCallback<T> extends XXCallBack {
     public void onResponse(final Call call, Response response) throws IOException {
 
         if (!response.isSuccessful()){
-            this.onFailure(call,new XXJSONException("操作失败."));
+            this.onFailure(call,new XXNetException("请求失败."));
             return;
         }
 
         String json = response.body().string();
         if (json == null || json.length() == 0){
-            this.onFailure(call,new XXJSONException("返回数据为空."));
+            this.onFailure(call,new XXNetException("返回数据为空."));
             return;
         }
 
