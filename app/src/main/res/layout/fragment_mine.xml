@@ -42,6 +42,7 @@
                 android:layout_height="70dp">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:textColor="@color/colorPrimary_text"
                     android:textSize="25sp"
                     android:layout_marginLeft="@dimen/dp_20"
@@ -51,6 +52,7 @@
                     android:layout_height="wrap_content"/>
 
                 <ImageView
+                    android:id="@+id/iv_avatar"
                     android:layout_marginRight="@dimen/dp_4"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -64,7 +66,7 @@
 
                 <ImageView
                     android:id="@+id/tv_item_icon_note"
-                    android:src="@color/colorDivider"
+                    android:src="@drawable/ic_note"
                     style="@style/stye_mine_list_item.icon" />
 
                 <ImageView
@@ -73,9 +75,9 @@
 
 
                 <TextView
-                    android:text="@string/app_name"
+                    style="@style/stye_mine_list_item.title"
                     android:layout_toRightOf="@id/tv_item_icon_note"
-                    style="@style/stye_mine_list_item.title">
+                    android:text="备忘录">
 
                 </TextView>
 
@@ -88,7 +90,7 @@
 
                 <ImageView
                     android:id="@+id/tv_item_icon_tips"
-                    android:src="@color/colorDivider"
+                    android:src="@drawable/ic_tips"
                     style="@style/stye_mine_list_item.icon" />
 
                 <ImageView
@@ -97,9 +99,9 @@
 
 
                 <TextView
+                    style="@style/stye_mine_list_item.title"
                     android:layout_toRightOf="@id/tv_item_icon_tips"
-                    android:text="@string/app_name"
-                    style="@style/stye_mine_list_item.title">
+                    android:text="提醒">
 
                 </TextView>
 
@@ -121,9 +123,9 @@
 
 
                 <TextView
+                    style="@style/stye_mine_list_item.title"
                     android:layout_toRightOf="@id/tv_item_icon_redPacket"
-                    android:text="@string/app_name"
-                    style="@style/stye_mine_list_item.title">
+                    android:text="红包">
 
                 </TextView>
 
@@ -150,9 +152,9 @@
 
 
                 <TextView
+                    style="@style/stye_mine_list_item.title"
                     android:layout_toRightOf="@id/tv_item_icon_"
-                    android:text="@string/app_name"
-                    style="@style/stye_mine_list_item.title">
+                    android:text="设置">
 
                 </TextView>
 
