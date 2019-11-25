@@ -15,11 +15,151 @@
             android:text="@string/mine"
             style="@style/style_navgation_bar_title">
         </TextView>
+
+
     </RelativeLayout>
 
+<!--  横向   HorizontalScrollView -->
+<!--androidx.core.widget.NestedScrollView-->
+
+<!--    能够滚动的view-->
+    <ScrollView
+        android:background="@color/colorBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
 
-    
 
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_10"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <TextView
+                    android:textColor="@color/colorPrimary_text"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_centerVertical="true"
+                    android:text="@string/app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:layout_marginRight="@dimen/dp_4"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@color/colorBackground"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/stye_mine_list_item">
+
+                <ImageView
+                    android:id="@+id/tv_item_icon_note"
+                    android:src="@color/colorDivider"
+                    style="@style/stye_mine_list_item.icon" />
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    style="@style/stye_mine_list_item.arrow" />
+
+
+                <TextView
+                    android:text="@string/app_name"
+                    android:layout_toRightOf="@id/tv_item_icon_note"
+                    style="@style/stye_mine_list_item.title">
+
+                </TextView>
+
+            </RelativeLayout>
+            <View
+                android:background="@color/colorDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+            <RelativeLayout style="@style/stye_mine_list_item">
+
+                <ImageView
+                    android:id="@+id/tv_item_icon_tips"
+                    android:src="@color/colorDivider"
+                    style="@style/stye_mine_list_item.icon" />
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    style="@style/stye_mine_list_item.arrow" />
+
+
+                <TextView
+                    android:layout_toRightOf="@id/tv_item_icon_tips"
+                    android:text="@string/app_name"
+                    style="@style/stye_mine_list_item.title">
+
+                </TextView>
+
+            </RelativeLayout>
+            <View
+                android:background="@color/colorDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+            <RelativeLayout style="@style/stye_mine_list_item">
+
+                <ImageView
+                    android:id="@+id/tv_item_icon_redPacket"
+                    android:src="@color/colorDivider"
+                    style="@style/stye_mine_list_item.icon" />
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    style="@style/stye_mine_list_item.arrow" />
+
+
+                <TextView
+                    android:layout_toRightOf="@id/tv_item_icon_redPacket"
+                    android:text="@string/app_name"
+                    style="@style/stye_mine_list_item.title">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+
+
+            <View
+                android:background="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <RelativeLayout style="@style/stye_mine_list_item">
+
+                <ImageView
+                    android:id="@+id/tv_item_icon_"
+                    android:src="@color/colorDivider"
+                    style="@style/stye_mine_list_item.icon" />
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    style="@style/stye_mine_list_item.arrow" />
+
+
+                <TextView
+                    android:layout_toRightOf="@id/tv_item_icon_"
+                    android:text="@string/app_name"
+                    style="@style/stye_mine_list_item.title">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -18,4 +18,6 @@
     <color name="colorDivider">#BDBDBD</color>
     <!--  背景色  -->
     <color name="colorBackground">#F8F8F8</color>
+    <!--  背景色  -->
+    <color name="colorWhite">#FFFF</color>
 </resources>

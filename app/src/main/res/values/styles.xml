@@ -37,4 +37,34 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="stye_mine_list_item">
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+    </style>
+
+    <style name="stye_mine_list_item.icon">
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+    </style>
+
+    <style name="stye_mine_list_item.arrow">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+    </style>
+
+    <style name="stye_mine_list_item.title">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/colorPrimary_text</item>
+        <item name="android:layout_marginLeft">@dimen/dp_10</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>
