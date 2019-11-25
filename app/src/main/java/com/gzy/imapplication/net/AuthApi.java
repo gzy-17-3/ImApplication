@@ -1,9 +1,8 @@
 package com.gzy.imapplication.net;
 
-import com.gzy.imapplication.model.Account;
 import com.gzy.imapplication.model.Token;
-import com.gzy.imapplication.net.core.XXModelCallback;
-import com.gzy.imapplication.net.core.XXURLUtils;
+import com.gzy.gzylibrary.core.XXModelCallback;
+import com.gzy.gzylibrary.core.XXURLUtils;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.gzy.imapplication.net.core;
+package com.gzy.gzylibrary.core;
 
 import java.io.IOException;
 

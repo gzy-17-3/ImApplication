@@ -1,11 +1,8 @@
 package com.gzy.imapplication.module.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +14,7 @@ import com.gzy.imapplication.model.Token;
 import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.module.home.HomeActivity;
 import com.gzy.imapplication.net.AuthApi;
-import com.gzy.imapplication.net.core.XXModelCallback;
+import com.gzy.gzylibrary.core.XXModelCallback;
 
 import java.io.IOException;
 
