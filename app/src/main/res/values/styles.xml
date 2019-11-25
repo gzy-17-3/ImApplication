@@ -23,4 +23,18 @@
         <item name="android:layout_height">55dp</item>
     </style>
 
+    <style name="style_navigation_bar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+    </style>
+
+    <style name="style_navgation_bar_title">
+        <item name="android:textSize">@dimen/sp_25</item>
+        <item name="android:textColor">@color/colorIcons</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

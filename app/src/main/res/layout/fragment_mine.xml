@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
     tools:context=".module.mine.MineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <!--   action bar  操作栏  -->
+    <!--   navigation bar 导航栏  -->
 
-</FrameLayout>
+    <RelativeLayout style="@style/style_navigation_bar">
+        <TextView
+            android:text="@string/mine"
+            style="@style/style_navgation_bar_title">
+        </TextView>
+    </RelativeLayout>
+
+
+
+    
+
+
+</LinearLayout>

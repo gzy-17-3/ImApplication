@@ -11,19 +11,11 @@
 <!--   action bar  操作栏  -->
 <!--   navigation bar 导航栏  -->
 
-    <RelativeLayout
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="55dp">
+    <RelativeLayout style="@style/style_navigation_bar">
 
         <TextView
-            android:textSize="@dimen/sp_25"
-            android:textColor="@color/colorIcons"
             android:text="@string/login"
-            android:id="@+id/nav_title"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            style="@style/style_navgation_bar_title">
         </TextView>
 
     </RelativeLayout>
