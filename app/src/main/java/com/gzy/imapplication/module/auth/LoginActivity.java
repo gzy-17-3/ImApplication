@@ -18,6 +18,7 @@ import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.module.home.HomeActivity;
 import com.gzy.imapplication.net.AuthApi;
 import com.gzy.imapplication.net.core.XXModelCallback;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
 
@@ -81,6 +82,12 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
+        final KProgressHUD showHud = KProgressHUD.create(LoginActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("正在努力登陆，请稍候。。。")
+                .setDimAmount(0.5f)
+                .show();
+
 
         AuthApi.login(phone, password, new XXModelCallback<Token>(Token.class) {
             @Override
@@ -90,11 +97,15 @@ public class LoginActivity extends BaseActivity {
                 Auth.saveToken(LoginActivity.this,model);
 
                 jumpHome();
+
+            
             }
 
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
+                showHud.dismiss();
                 Toast.makeText(LoginActivity.this, "" + message, Toast.LENGTH_SHORT).show();
+
             }
         });
 
