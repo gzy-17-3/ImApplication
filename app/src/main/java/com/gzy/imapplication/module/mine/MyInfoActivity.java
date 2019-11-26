@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.net.MineApi;
 import com.gzy.imapplication.net.URLSet;
 import com.gzy.imapplication.net.core.XXModelCallback;
+import com.mingle.sweetpick.CustomDelegate;
+import com.mingle.sweetpick.SweetSheet;
 
 import java.io.IOException;
 
@@ -41,6 +44,12 @@ public class MyInfoActivity extends BaseActivity {
         tv_gender = findViewById(R.id.tv_gender);
 
 //        Token token = Auth.loadToken(this);
+
+//        dialogs  对话框
+
+//        Alert   弹框
+//        AlertSheet  底部弹出的弹框
+
 
     }
 
@@ -67,7 +76,7 @@ public class MyInfoActivity extends BaseActivity {
 
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
-                Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -78,9 +87,9 @@ public class MyInfoActivity extends BaseActivity {
         tv_name.setText(account.getName());
 
         String genderStr = "未知";
-        if (account.getGender() == 1){
+        if (account.getGender() == 1) {
             genderStr = "女";
-        }else if(account.getGender() == 2){
+        } else if (account.getGender() == 2) {
             genderStr = "男";
         }
 
@@ -105,6 +114,12 @@ public class MyInfoActivity extends BaseActivity {
     }
 
     public void onClickRowAvatar(View view) {
+
+        if (account == null) {
+            return;
+        }
+
+
 
     }
 
