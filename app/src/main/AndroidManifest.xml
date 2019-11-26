@@ -11,7 +11,8 @@
         android:networkSecurityConfig="@xml/passhttp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.auth.SigninActivity"></activity>
+        <activity android:name=".module.mine.MyInfoActivity"></activity>
+        <activity android:name=".module.auth.SigninActivity" />
         <activity android:name=".module.home.HomeActivity" />
         <activity android:name=".module.auth.LoginActivity" />
         <activity

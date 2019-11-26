@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.mine.MyInfoActivity">
+
+    <!--   action bar  操作栏  -->
+    <!--   navigation bar 导航栏  -->
+
+    <RelativeLayout style="@style/style_navigation_bar">
+
+        <TextView
+            style="@style/style_navgation_bar_title"
+            android:text="@string/mine"></TextView>
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_row_avatar"
+                android:onClick="onClickRowAvatar"
+                style="@style/stye_mine_list_item"
+                android:layout_height="80dp"
+                >
+
+
+                <ImageView
+                    android:id="@+id/iv_arrow_right_info"
+                    style="@style/stye_mine_list_item.arrow"
+                    android:src="@drawable/ic_arrow_right" />
+
+
+                <TextView
+                    style="@style/stye_mine_list_item.title.noImage"
+                    android:text="头像"/>
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_toLeftOf="@id/iv_arrow_right_info"
+                    android:layout_centerVertical="true"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/colorDivider" />
+
+            <RelativeLayout
+                android:id="@+id/rl_row_name"
+                android:onClick="onClickRowName"
+                style="@style/stye_mine_list_item">
+
+                <ImageView
+                    style="@style/stye_mine_list_item.arrow"
+                    android:src="@drawable/ic_arrow_right" />
+
+
+                <TextView
+                    style="@style/stye_mine_list_item.title.noImage"
+                    android:text="姓名">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:text="张三"
+                    style="@style/stye_mine_list_item_right_details_text">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/colorDivider" />
+
+            <RelativeLayout
+                android:onClick="onClickRowGender"
+                android:id="@+id/rl_row_gender"
+                style="@style/stye_mine_list_item">
+
+                <ImageView
+                    style="@style/stye_mine_list_item.arrow"
+                    android:src="@drawable/ic_arrow_right" />
+
+                <TextView
+                    style="@style/stye_mine_list_item.title.noImage"
+                    android:text="性别">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:text="男"
+                    style="@style/stye_mine_list_item_right_details_text">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@color/colorBackground" />
+
+            <RelativeLayout style="@style/stye_mine_list_item">
+
+                <ImageView
+                    android:id="@+id/tv_item_icon_"
+                    style="@style/stye_mine_list_item.icon"
+                    android:src="@color/colorDivider" />
+
+                <ImageView
+                    style="@style/stye_mine_list_item.arrow"
+                    android:src="@drawable/ic_arrow_right" />
+
+
+                <TextView
+                    style="@style/stye_mine_list_item.title"
+                    android:layout_toRightOf="@id/tv_item_icon_"
+                    android:text="设置">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

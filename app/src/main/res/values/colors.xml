@@ -12,6 +12,8 @@
     <color name="colorPrimary_text">#212121</color>
     <!--  子标题颜色   -->
     <color name="colorSecondary_text">#757575</color>
+    <!--  子子标题颜色   -->
+    <color name="colorSecondary_Secondary_text">#B1B1B1</color>
     <!--  图标颜色  -->
     <color name="colorIcons">#FFFFFF</color>
     <!--  分割线颜色  -->

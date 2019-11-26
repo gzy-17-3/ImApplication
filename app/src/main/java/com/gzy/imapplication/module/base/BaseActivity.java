@@ -1,11 +1,16 @@
 package com.gzy.imapplication.module.base;
 
+import android.content.Context;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
 
+
+    public Context getContext() {
+        return this;
+    }
 
     /**
      *

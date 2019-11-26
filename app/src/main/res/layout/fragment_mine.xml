@@ -36,6 +36,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/rl_row_userinfo"
                 android:layout_margin="@dimen/dp_10"
                 android:background="@color/colorWhite"
                 android:layout_width="match_parent"

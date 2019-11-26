@@ -1,18 +1,10 @@
 package com.gzy.imapplication.module.mine;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,58 +14,38 @@ import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
 import com.gzy.imapplication.model.Token;
-import com.gzy.imapplication.module.base.BaseFragment;
+import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.net.MineApi;
 import com.gzy.imapplication.net.URLSet;
 import com.gzy.imapplication.net.core.XXModelCallback;
-import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 
+public class MyInfoActivity extends BaseActivity {
 
-public class MineFragment extends BaseFragment {
-
+    ImageView iv_avatar;
+    TextView tv_name;
+    TextView tv_gender;
     private Account account;
 
-    public MineFragment() {
-        // Required empty public constructor
-    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_info);
 
-        return inflater.inflate(R.layout.fragment_mine, container, false);
-    }
+        iv_avatar = findViewById(R.id.iv_avatar);
+        tv_name = findViewById(R.id.tv_name);
+        tv_gender = findViewById(R.id.tv_gender);
 
-    TextView tv_name;
-    ImageView iv_avatar;
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        tv_name = view.findViewById(R.id.tv_name);
-        iv_avatar = view.findViewById(R.id.iv_avatar);
-
-        View rl_row_userinfo = view.findViewById(R.id.rl_row_userinfo);
-        rl_row_userinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (account == null){
-                    return;
-                }
-
-                Intent intent = new Intent(getActivity(),MyInfoActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Token token = Auth.loadToken(this);
 
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
         loadData();
     }
@@ -81,7 +53,7 @@ public class MineFragment extends BaseFragment {
     public void loadData() {
         // 加载数据操作
 
-        Token token1 = Auth.loadToken(this.getContext());
+        Token token1 = Auth.loadToken(this);
 
         String userid = token1.getUserid() + "";
         String token = token1.getToken();
@@ -89,13 +61,12 @@ public class MineFragment extends BaseFragment {
 
             @Override
             public void onResponseData(Call call, Account model) {
-                MineFragment.this.account = model;
+                MyInfoActivity.this.account = model;
                 refreshUI(model);
             }
 
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
-
                 Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
             }
         });
@@ -106,7 +77,14 @@ public class MineFragment extends BaseFragment {
 
         tv_name.setText(account.getName());
 
+        String genderStr = "未知";
+        if (account.getGender() == 1){
+            genderStr = "女";
+        }else if(account.getGender() == 2){
+            genderStr = "男";
+        }
 
+        tv_gender.setText(genderStr);
 
         if (TextUtils.isEmpty(account.getAvatar())) {
 
@@ -123,6 +101,18 @@ public class MineFragment extends BaseFragment {
                 .with(this)
                 .load(url)
                 .into(iv_avatar);
+
+    }
+
+    public void onClickRowAvatar(View view) {
+
+    }
+
+    public void onClickRowName(View view) {
+
+    }
+
+    public void onClickRowGender(View view) {
 
     }
 }
