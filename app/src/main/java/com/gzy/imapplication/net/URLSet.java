@@ -14,10 +14,13 @@ public interface URLSet {
 
     interface Mine{
 
+        String PATH = HOST + "/mine";
+
     }
 
     interface File{
 
+        String PATH =  HOST + "/file";
     }
 
 

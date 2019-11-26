@@ -67,7 +67,7 @@ public class XXURLUtils {
      * @param query    参数
      * @param callback 回调
      */
-    public void get(String url, Map<String, String> header, Map<String, String> query, Callback callback) throws Exception {
+    public void get(String url, Map<String, String> header, Map<String, String> query, Callback callback) {
 
         Request.Builder reqBuild = new Request.Builder();
 
