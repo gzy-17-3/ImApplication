@@ -14,12 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
 import com.gzy.imapplication.model.Token;
+import com.gzy.imapplication.module.base.BaseFragment;
 import com.gzy.imapplication.net.MineApi;
 import com.gzy.imapplication.net.URLSet;
 import com.gzy.imapplication.net.core.XXModelCallback;
@@ -30,7 +32,7 @@ import java.io.IOException;
 import okhttp3.Call;
 
 
-public class MineFragment extends Fragment {
+public class MineFragment extends BaseFragment {
 
     public MineFragment() {
         // Required empty public constructor
@@ -77,12 +79,7 @@ public class MineFragment extends Fragment {
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
 
-                KProgressHUD.create(getContext())
-                        .setLabel("请求失败")
-                        .setDetailsLabel(message)
-                        .setAutoDismiss(true)
-                        .show();
-
+                Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
             }
         });
     }
