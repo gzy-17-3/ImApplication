@@ -332,6 +332,8 @@ public class MyInfoActivity extends BaseActivity {
 
     public void onClickRowName(View view) {
 
+        startActivity(new Intent(this,UpdateUsernameActivity.class));
+
     }
 
     public void onClickRowGender(View view) {
