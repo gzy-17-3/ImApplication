@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -44,10 +48,18 @@ dependencies {
 
 
     // 选择器
-    implementation 'com.baoyz.actionsheet:library:1.1.7'
+    implementation 'com.bigkoo:alertview:1.0.3'
 
     // 底部弹框
     implementation 'com.afollestad.material-dialogs:bottomsheets:3.1.1'
+
+
+    // 动态权限申请
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
+
+    // 跳转到系统页面
+    implementation 'com.github.ly-android:PermissionUtils:1.0.3'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
