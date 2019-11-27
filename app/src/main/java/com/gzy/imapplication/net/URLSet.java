@@ -21,6 +21,10 @@ public interface URLSet {
     interface File{
 
         String PATH =  HOST + "/file";
+
+        String UPLOAD =  PATH + "/upload";
+
+
     }
 
 

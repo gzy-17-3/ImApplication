@@ -31,6 +31,9 @@ import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.net.MineApi;
 import com.gzy.imapplication.net.URLSet;
 import com.gzy.imapplication.net.core.XXModelCallback;
+import com.gzy.imapplication.net.core.XXURLUtils;
+import com.gzy.imapplication.net.core.XXUploadFileUtils;
+import com.gzy.imapplication.utils.Uri2FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -184,7 +187,7 @@ public class MyInfoActivity extends BaseActivity {
     private boolean isAndroidQ = Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q;
 
 
-    @NeedsPermission(Manifest.permission.CAMERA)
+    @NeedsPermission({Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void takePhotos() {
 
         Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -193,8 +196,8 @@ public class MyInfoActivity extends BaseActivity {
         Uri photoUri = null;
 
         if (isAndroidQ) {
-            // 适配android 10
-            photoUri = createImageUri();
+            // 适配 android 10
+            photoUri = createImageUri();//getContentResolver().insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, new ContentValues());
         } else {
             try {
                 photoFile = createImageFile();
@@ -236,7 +239,7 @@ public class MyInfoActivity extends BaseActivity {
     }
 
     /**
-     * 创建保存图片的文件
+     * 创建保存图片的文件 安卓 7 - 9
      */
     private File createImageFile() throws IOException {
         String imageName = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
@@ -256,30 +259,48 @@ public class MyInfoActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                File file;
                 if (isAndroidQ) {
                     // Android 10 使用图片uri加载
 //                    ivPhoto.setImageURI(mCameraUri);
 //                    mCameraUri
                     Toast.makeText(this, ""+mCameraUri, Toast.LENGTH_SHORT).show();
+
+                    file = Uri2FileUtils.uriToFile(mCameraUri, this);
+
+
+
                 } else {
                     // 使用图片路径加载
 //                    ivPhoto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
+
                     Toast.makeText(this, ""+mCameraImagePath, Toast.LENGTH_SHORT).show();
-//                   mCameraImagePath
+                    file = new File(mCameraImagePath);
 
                 }
+
+                // 上传
+
+                uploadAvatarFile(file);
             } else {
                 Toast.makeText(this,"取消",Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    @OnPermissionDenied(Manifest.permission.CAMERA)
+    private void uploadAvatarFile(File file) {
+//        XXURLUtils.shared.
+
+        XXUploadFileUtils.uploadFile(URLSet.File.UPLOAD,file);
+
+    }
+
+    @OnPermissionDenied({Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void onCameraDenied() {
         Toast.makeText(this, R.string.permission_camera_denied, Toast.LENGTH_SHORT).show();
     }
 
-    @OnNeverAskAgain(Manifest.permission.CAMERA)
+    @OnNeverAskAgain({Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void onCameraNeverAskAgain() {
         runOnUiThread(2000, new Runnable() {
             @Override

@@ -75,7 +75,13 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        loadData();
+        runOnUiThread(10,()->loadData());
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
     }
 
     public void loadData() {
