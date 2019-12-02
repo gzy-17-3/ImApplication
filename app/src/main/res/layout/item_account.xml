@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout style="@style/stye_mine_list_item">
+
+        <ImageView
+            android:id="@+id/tv_item_icon_note"
+            android:src="@drawable/ic_note"
+            style="@style/stye_mine_list_item.icon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            />
+
+        <ImageView
+            android:src="@drawable/ic_arrow_right"
+            style="@style/stye_mine_list_item.arrow" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/stye_mine_list_item.title"
+            android:layout_toRightOf="@id/tv_item_icon_note"
+            android:text="~">
+
+        </TextView>
+
+    </RelativeLayout>
+    <View
+        android:background="@color/colorDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+</LinearLayout>

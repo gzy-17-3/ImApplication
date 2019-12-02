@@ -1,8 +1,11 @@
 package com.gzy.imapplication.module.contacts;
 
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gzy.imapplication.R;
@@ -20,5 +23,9 @@ public class SearchContactAdapter  extends BaseQuickAdapter<Account,BaseViewHold
     @Override
     protected void convert(@NonNull BaseViewHolder helper, Account item) {
         helper.setText(R.id.tv_name,item.getName());
+//
+        Glide.with(mContext)
+                .load(item.getAvatarUrlString())
+                .into((ImageView) helper.getView(R.id.tv_item_icon_note));
     }
 }

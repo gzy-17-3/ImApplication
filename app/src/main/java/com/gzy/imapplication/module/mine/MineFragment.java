@@ -112,9 +112,9 @@ public class MineFragment extends BaseFragment {
 
         tv_name.setText(account.getName());
 
+        String urlString = account.getAvatarUrlString();
 
-
-        if (TextUtils.isEmpty(account.getAvatar())) {
+        if (TextUtils.isEmpty(urlString)) {
 
             Glide
                     .with(this)
@@ -124,10 +124,9 @@ public class MineFragment extends BaseFragment {
             return;
         }
 
-        String url = URLSet.File.PATH + "/" + account.getAvatar();
         Glide
                 .with(this)
-                .load(url)
+                .load(urlString)
                 .into(iv_avatar);
 
     }

@@ -1,5 +1,10 @@
 package com.gzy.imapplication.model;
 
+import android.text.TextUtils;
+
+import com.bumptech.glide.Glide;
+import com.gzy.imapplication.net.URLSet;
+
 public class Account {
 
     /**
@@ -84,5 +89,23 @@ public class Account {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+
+
+
+    public String getAvatarUrlString() {
+
+        if (TextUtils.isEmpty(getAvatar())){
+            return null;
+        }
+
+        if (getAvatar().startsWith("http")) {
+            return getAvatar();
+        }
+
+        String url = URLSet.File.PATH + "/" + getAvatar();
+
+        return url;
     }
 }
