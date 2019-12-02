@@ -27,6 +27,15 @@ public interface URLSet {
 
     }
 
+    interface Friend{
+
+        String PATH =  HOST + "/add_friend_request";
+
+        String FIND =  PATH + "/find";
+
+
+    }
+
 
 
 }

@@ -8,23 +8,32 @@
     tools:context=".module.contacts.SearchContactActivity">
 
     <RelativeLayout style="@style/style_navigation_bar">
+
         <TextView
             android:id="@+id/tv_title"
-            android:text="搜索结果（~）"
-            style="@style/style_navgation_bar_title">
-        </TextView>
+            style="@style/style_navgation_bar_title"
+            android:text="搜索结果（~）"></TextView>
 
         <Button
             android:id="@+id/btn_find"
-            android:text="🔙"
-            android:textSize="@dimen/sp_30"
-            android:textColor="@color/colorIcons"
-            android:layout_alignParentLeft="true"
-            android:background="#0000"
             android:layout_width="55dp"
             android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="#0000"
             android:onClick="onClickBack"
-            />
+            android:text="🔙"
+            android:textColor="@color/colorIcons"
+            android:textSize="@dimen/sp_30" />
     </RelativeLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
