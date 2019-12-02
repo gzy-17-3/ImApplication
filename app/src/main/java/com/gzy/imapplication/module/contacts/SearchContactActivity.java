@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.bigkoo.alertview.AlertView;
+import com.bigkoo.alertview.OnItemClickListener;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
@@ -75,6 +78,35 @@ public class SearchContactActivity extends BaseActivity {
         // 发起请求 获取搜索结果
         swipeRefreshLayout.post(()->{
             loadData(keyword);
+        });
+
+        // 点击某行
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                Account a = (Account)adapter.getData().get(position);
+                int touid = a.getId();
+                String token = Auth.loadToken(getContext()).getToken();
+
+                AlertView alertView = new AlertView.Builder()
+                        .setContext(SearchContactActivity.this)
+                        .setStyle(AlertView.Style.Alert)
+                        .setMessage(String.format("申请成为：%s的好友", a.getName()))
+                        .setCancelText("取消")
+                        .setOthers(new String[]{"添加"})
+                        .setOnItemClickListener(new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Object o, int position) {
+//                                Toast.makeText(SearchContactActivity.this, ""+position, Toast.LENGTH_SHORT).show();
+                                if (position == 0){
+                                    
+                                }
+                            }
+                        })
+                        .build();
+                alertView.show();
+            }
         });
     }
 
