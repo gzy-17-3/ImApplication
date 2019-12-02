@@ -8,4 +8,5 @@
     <string name="mine">我</string>
     <string name="permission_camera_denied">申请照相机权限被拒绝</string>
     <string name="permission_camera_never_askagain">申请照相机权限永远被拒绝</string>
+    <string name="contact">通讯录</string>
 </resources>

@@ -3,5 +3,6 @@
     <string name="login">Login</string>
     <string name="signin">Signin</string>
     <string name="mine">Mine</string>
+    <string name="contact">Contact</string>
 
 </resources>

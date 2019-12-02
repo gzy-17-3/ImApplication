@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="通讯录"
+                    android:text="@string/contact"
                     android:textColor="@color/tabbar_normal_text_color"></TextView>
             </LinearLayout>
 

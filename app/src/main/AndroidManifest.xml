@@ -14,7 +14,9 @@
         android:networkSecurityConfig="@xml/passhttp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.mine.UpdateUsernameActivity"></activity>
+        <activity android:name=".module.contacts.SearchContactActivity"></activity>
+        <activity android:name=".module.contacts.PreAddFriendActivity" />
+        <activity android:name=".module.mine.UpdateUsernameActivity" />
         <activity android:name=".module.mine.MyInfoActivity" />
         <activity android:name=".module.auth.SigninActivity" />
         <activity android:name=".module.home.HomeActivity" />

@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    tools:context=".module.contacts.ContactsFragment">
-
-    <!--   action bar  操作栏  -->
-    <!--   navigation bar 导航栏  -->
+    android:orientation="vertical"
+    tools:context=".module.contacts.SearchContactActivity">
 
     <RelativeLayout style="@style/style_navigation_bar">
         <TextView
-            android:text="@string/contact"
+            android:id="@+id/tv_title"
+            android:text="搜索结果（~）"
             style="@style/style_navgation_bar_title">
         </TextView>
 
         <Button
-            android:id="@+id/btn_add"
-            android:text="➕"
+            android:id="@+id/btn_find"
+            android:text="🔙"
             android:textSize="@dimen/sp_30"
             android:textColor="@color/colorIcons"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:background="#0000"
             android:layout_width="55dp"
             android:layout_height="match_parent"
+            android:onClick="onClickBack"
             />
     </RelativeLayout>
 
-
-    <!--   RGB  #XXX  #XXXXXX   -->
-    <!--   ARGB  #XXXX #XXXXXXXX   -->
-
-
-</FrameLayout>
+</LinearLayout>
