@@ -121,7 +121,7 @@ public class SigninActivity extends BaseActivity {
 
         final Intent broadcastIntent = new Intent(LoginSucceedBroadcast.KEY);
 
-        runOnBackgroundThread(100, new Runnable() {
+        runOnUiThread(100, new Runnable() {
             @Override
             public void run() {
                 sendBroadcast(broadcastIntent);

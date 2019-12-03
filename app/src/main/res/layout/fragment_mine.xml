@@ -161,6 +161,27 @@
 
             </RelativeLayout>
 
+            <View
+                android:background="@color/colorBackground"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_logout"
+                android:background="@drawable/btn_normal_bg"
+                style="@style/stye_mine_list_item">
+
+                <TextView
+                    style="@style/stye_mine_list_item.title"
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorTransparent"
+                    android:textColor="@color/colorIcons"
+                    android:text="登出">
+
+                </TextView>
+
+            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

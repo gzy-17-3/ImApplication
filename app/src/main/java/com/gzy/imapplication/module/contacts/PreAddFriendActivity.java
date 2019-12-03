@@ -20,7 +20,6 @@ public class PreAddFriendActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_add_friend);
-
     }
 
     public void onClickFind(View view) {

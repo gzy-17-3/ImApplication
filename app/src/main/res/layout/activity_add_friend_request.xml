@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/style_navgation_bar_title"
-            android:text="@string/contact"></TextView>
+            android:text="新朋友"></TextView>
 
         <Button
             android:id="@+id/btn_add"

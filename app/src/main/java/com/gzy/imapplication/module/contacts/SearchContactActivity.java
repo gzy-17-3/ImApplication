@@ -25,6 +25,7 @@ import com.gzy.imapplication.module.mine.MineFragment;
 import com.gzy.imapplication.net.ContactsApi;
 import com.gzy.imapplication.net.MineApi;
 import com.gzy.imapplication.net.core.XXModelCallback;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,12 +83,12 @@ public class SearchContactActivity extends BaseActivity {
 
         // 点击某行
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            // ~
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
                 Account a = (Account)adapter.getData().get(position);
                 int touid = a.getId();
-                String token = Auth.loadToken(getContext()).getToken();
 
                 AlertView alertView = new AlertView.Builder()
                         .setContext(SearchContactActivity.this)
@@ -96,16 +97,46 @@ public class SearchContactActivity extends BaseActivity {
                         .setCancelText("取消")
                         .setOthers(new String[]{"添加"})
                         .setOnItemClickListener(new OnItemClickListener() {
+
+                            // ~
                             @Override
                             public void onItemClick(Object o, int position) {
 //                                Toast.makeText(SearchContactActivity.this, ""+position, Toast.LENGTH_SHORT).show();
                                 if (position == 0){
-                                    
+                                    apply(touid);
+                                    // 协程
                                 }
                             }
                         })
                         .build();
                 alertView.show();
+            }
+        });
+    }
+
+    private void apply(int touid) {
+        //
+        String token = Auth.loadToken(this).getToken();
+        KProgressHUD show = KProgressHUD.create(this).show();
+        ContactsApi.apply(token, touid, "申请添加好友", new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(()->{
+                    show.dismiss();
+                    Toast.makeText(SearchContactActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                runOnUiThread(()->{
+                    show.dismiss();
+                    if (response.isSuccessful()){
+                        Toast.makeText(SearchContactActivity.this, "发起申请成功", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(SearchContactActivity.this, "发起申请失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

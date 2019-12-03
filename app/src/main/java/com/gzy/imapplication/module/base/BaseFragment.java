@@ -45,7 +45,7 @@ public class BaseFragment extends Fragment {
         });
     }
 
-    private void runOnUiThread(Runnable action) {
+    public void runOnUiThread(Runnable action) {
         FragmentActivity activity = getActivity();
         assert activity != null;
         activity.runOnUiThread(action);

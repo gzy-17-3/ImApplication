@@ -31,7 +31,10 @@ public interface URLSet {
 
         String PATH =  HOST + "/add_friend_request";
 
-        String FIND =  PATH + "/find";
+        String ADD_FRIEND_REQUEST =  PATH + "/"; // 获取 新好友列表
+
+        String FIND =  PATH + "/find";  // 查找联系人
+        String APPLY =  PATH + "/apply"; // 发起 申请添加某人为好友
 
 
     }

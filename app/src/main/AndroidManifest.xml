@@ -14,7 +14,8 @@
         android:networkSecurityConfig="@xml/passhttp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.contacts.SearchContactActivity"></activity>
+        <activity android:name=".module.contacts.AddFriendRequestActivity"></activity>
+        <activity android:name=".module.contacts.SearchContactActivity" />
         <activity android:name=".module.contacts.PreAddFriendActivity" />
         <activity android:name=".module.mine.UpdateUsernameActivity" />
         <activity android:name=".module.mine.MyInfoActivity" />

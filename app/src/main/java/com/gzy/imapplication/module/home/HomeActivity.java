@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.module.auth.LoginActivity;
+import com.gzy.imapplication.module.auth.LoginSucceedBroadcast;
+import com.gzy.imapplication.module.auth.LogoutSucceedBroadcast;
 import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.module.contacts.ContactsFragment;
 import com.gzy.imapplication.module.message.MessageFragment;
@@ -21,6 +24,8 @@ public class HomeActivity extends BaseActivity {
     Fragment contactsFragment;
     Fragment messageFragment;
     Fragment mineFragment;
+    private IntentFilter intentFilter;
+    LogoutSucceedBroadcast logoutSucceedBroadcast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,29 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         initFragment(R.id.item_tabbar_message);
+
+        registerEvent();
+    }
+
+    private  void  registerEvent() {
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(LogoutSucceedBroadcast.KEY);
+        logoutSucceedBroadcast = new LogoutSucceedBroadcast();
+
+        logoutSucceedBroadcast.runnable = new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        };
+
+        registerReceiver(logoutSucceedBroadcast,intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(logoutSucceedBroadcast);
+        super.onDestroy();
     }
 
     public void onClickLogout(View view) {

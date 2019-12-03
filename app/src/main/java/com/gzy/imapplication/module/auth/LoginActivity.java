@@ -37,6 +37,9 @@ public class LoginActivity extends BaseActivity {
 
 
         registerEvent();
+
+        final Intent broadcastIntent = new Intent(LogoutSucceedBroadcast.KEY);
+        sendBroadcast(broadcastIntent);
     }
 
     private  void  registerEvent() {
@@ -117,7 +120,7 @@ public class LoginActivity extends BaseActivity {
 
         final Intent broadcastIntent = new Intent(LoginSucceedBroadcast.KEY);
 
-        runOnBackgroundThread(100, new Runnable() {
+        runOnUiThread(100, new Runnable() {
             @Override
             public void run() {
                 sendBroadcast(broadcastIntent);

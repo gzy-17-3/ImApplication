@@ -22,6 +22,7 @@ import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
 import com.gzy.imapplication.model.Token;
+import com.gzy.imapplication.module.auth.LoginActivity;
 import com.gzy.imapplication.module.base.BaseFragment;
 import com.gzy.imapplication.net.MineApi;
 import com.gzy.imapplication.net.URLSet;
@@ -69,7 +70,11 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-
+        view.findViewById(R.id.rl_logout).setOnClickListener((v)->{
+            // 登出
+            Auth.clearToken(getContext());
+            startActivity(new Intent(getContext(), LoginActivity.class));
+        });
     }
 
     @Override
