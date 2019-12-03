@@ -19,6 +19,7 @@
         android:id="@+id/tv_newcount"
         android:layout_marginLeft="@dimen/dp_10"
         android:text="10"
+        android:visibility="gone"
         android:padding="@dimen/dp_4"
         android:textColor="@color/colorIcons"
         android:background="@color/colorPrimary"

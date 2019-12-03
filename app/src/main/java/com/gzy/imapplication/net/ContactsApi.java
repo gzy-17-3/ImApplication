@@ -11,7 +11,7 @@ import okhttp3.Callback;
 public class ContactsApi {
     public static void find(String token, String keyword, Callback callback) {
 
-        String url = URLSet.Friend.FIND;
+        String url = URLSet.AddFriendRequest.FIND;
 
 
         Map<String, String> header = new HashMap<>();
@@ -28,7 +28,7 @@ public class ContactsApi {
      */
     public static void apply(String token, Integer toUid, String verifiInfo, Callback callback) {
 
-        String url = URLSet.Friend.APPLY;
+        String url = URLSet.AddFriendRequest.APPLY;
 
 
         Map<String, String> header = new HashMap<>();
@@ -51,7 +51,7 @@ public class ContactsApi {
      */
     public static void reply(String token, Long requestid, AddFriendRequestFullAccount.OperationEnum opt, Callback callback) {
 
-        String url = URLSet.Friend.REPLY;
+        String url = URLSet.AddFriendRequest.REPLY;
 
         Map<String, String> header = new HashMap<>();
         Map<String, String> para = new HashMap<>();
@@ -66,12 +66,29 @@ public class ContactsApi {
 
 
     public static void loadAddFriendRequest(String token, Callback callback) {
-        String url = URLSet.Friend.ADD_FRIEND_REQUEST;
+        String url = URLSet.AddFriendRequest.ADD_FRIEND_REQUEST;
 
         Map<String, String> header = new HashMap<>();
         Map<String, String> para = new HashMap<>();
 
         header.put("Authorization","Bearer "+token);
+
+        XXURLUtils.shared.get(url,header,para,callback);
+    }
+
+    /**
+     *
+     * @param token
+     */
+    public static void count(String token,Callback callback) {
+
+        String url = URLSet.AddFriendRequest.COUNT;
+
+        Map<String, String> header = new HashMap<>();
+        Map<String, String> para = new HashMap<>();
+
+        header.put("Authorization","Bearer "+token);
+
 
         XXURLUtils.shared.get(url,header,para,callback);
     }

@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -40,6 +42,7 @@ public class ContactsFragment extends BaseFragment {
 
     private ContactsAdapter adapter;
     private View headerView;
+    private TextView tv_newcount;
 
     public ContactsFragment() {
         // Required empty public constructor
@@ -79,6 +82,7 @@ public class ContactsFragment extends BaseFragment {
         adapter = new ContactsAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
         headerView = View.inflate(getContext(),R.layout.headview_new_cintact,null);
+        tv_newcount = headerView.findViewById(R.id.tv_newcount);
         adapter.addHeaderView(headerView);
 
         swipeRefreshLayout.post(()->{
@@ -87,6 +91,50 @@ public class ContactsFragment extends BaseFragment {
 
         headerView.setOnClickListener((v)->{
             jumpAddFriendRequest();
+        });
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadCout();
+    }
+
+    private void loadCout() {
+        ContactsApi.count(Auth.getTokenValue(getContext()), new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                int vint = 0;
+                if (response.isSuccessful()){
+                    String v = response.body().string();
+                    if (!TextUtils.isEmpty(v)){
+                        try {
+                            vint = Integer.parseInt(v);
+                        }catch (Exception e){
+
+                        }
+                    }
+                }
+
+                int finalVint = vint;
+                runOnUiThread(()->{
+                    if (finalVint != 0){
+                        tv_newcount.setText(finalVint);
+                        tv_newcount.setVisibility(View.VISIBLE);
+                    }else{
+                        tv_newcount.setText("");
+                        tv_newcount.setVisibility(View.GONE);
+                    }
+
+                });
+            }
         });
     }
 
