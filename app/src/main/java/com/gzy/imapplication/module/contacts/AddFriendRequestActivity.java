@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
+import com.gzy.imapplication.model.AddFriendRequestFullAccount;
 import com.gzy.imapplication.module.base.BaseActivity;
 import com.gzy.imapplication.net.ContactsApi;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -28,7 +29,7 @@ import okhttp3.Response;
 
 public class AddFriendRequestActivity extends BaseActivity {
 
-    private ContactsAdapter adapter;
+    private AddFriendRequestAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
 
@@ -47,7 +48,7 @@ public class AddFriendRequestActivity extends BaseActivity {
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ContactsAdapter(new ArrayList<>());
+        adapter = new AddFriendRequestAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
         swipeRefreshLayout.post(()->{
@@ -80,7 +81,7 @@ public class AddFriendRequestActivity extends BaseActivity {
                     return;
                 }
                 String jsonString = response.body().string();
-                List<Account> accounts = JSON.parseArray(jsonString, Account.class);
+                List<AddFriendRequestFullAccount> accounts = JSON.parseArray(jsonString, AddFriendRequestFullAccount.class);
                 runOnUiThread(()->{
                     hud.dismiss();
                     adapter.replaceData(accounts);
