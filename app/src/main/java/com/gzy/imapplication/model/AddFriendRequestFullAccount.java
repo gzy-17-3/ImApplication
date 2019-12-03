@@ -3,6 +3,9 @@ package com.gzy.imapplication.model;
 import androidx.annotation.NonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AddFriendRequestFullAccount {
     private Long id;
@@ -103,7 +106,7 @@ public class AddFriendRequestFullAccount {
 
         public static OperationEnum get(Integer operation) {
             if (operation == null){
-                return OperationEnum.unknown;
+                return OperationEnum.notOperating;
             }
             if (operation == 0){
                 return OperationEnum.notOperating;
@@ -120,10 +123,18 @@ public class AddFriendRequestFullAccount {
             return OperationEnum.unknown;
         }
 
+        public static List<OperationEnum> canOperation() {
+            return Arrays.asList(accepted, ignore, reject);
+        }
+
         @NonNull
         @Override
         public String toString() {
             return defStr;
+        }
+
+        public int getiValue() {
+            return iValue;
         }
     }
 }

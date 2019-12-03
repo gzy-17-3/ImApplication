@@ -16,12 +16,11 @@
 
         <Button
             android:id="@+id/btn_find"
-            android:text="🔍"
-            android:textSize="@dimen/sp_30"
+            android:text="搜索"
             android:textColor="@color/colorIcons"
             android:layout_alignParentRight="true"
             android:background="#0000"
-            android:layout_width="55dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:onClick="onClickFind"
             />
@@ -29,7 +28,7 @@
 
     <EditText
         android:drawableLeft="@drawable/ic_tabbar_mine_n"
-        android:hint="👥用户名/📱手机号/📮邮箱"
+        android:hint="    用户名/手机号/邮箱"
         android:layout_marginTop="@dimen/dp_20"
         android:id="@+id/edt_keyword"
         android:layout_width="match_parent"

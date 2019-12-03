@@ -5,7 +5,6 @@ import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.gzy.imapplication.model.Token;
-import com.gzy.imapplication.module.main.SplashActivity;
 import com.gzy.imapplication.utils.SharedPreferencesUtils;
 
 public class Auth {
@@ -49,5 +48,9 @@ public class Auth {
      */
     public static void clearToken(Context context){
         SharedPreferencesUtils.setValue(context,"tokenjsonstr","");
+    }
+
+    public static String getTokenValue(Context context) {
+        return loadToken(context).getToken();
     }
 }

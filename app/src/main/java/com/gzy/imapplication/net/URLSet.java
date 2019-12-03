@@ -35,6 +35,7 @@ public interface URLSet {
 
         String FIND =  PATH + "/find";  // 查找联系人
         String APPLY =  PATH + "/apply"; // 发起 申请添加某人为好友
+        String REPLY =  PATH + "/reply"; // 应答 添加某人为好友
 
 
     }
