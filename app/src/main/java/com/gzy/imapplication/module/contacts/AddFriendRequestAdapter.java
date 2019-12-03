@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gzy.imapplication.R;
-import com.gzy.imapplication.model.Account;
 import com.gzy.imapplication.model.AddFriendRequestFullAccount;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class AddFriendRequestAdapter extends BaseQuickAdapter<AddFriendRequestFu
         helper.setText(R.id.tv_name,item.getAccount().getName());
 
 
-        helper.setText(R.id.tv_state,item.getOperationShowStr());
+        helper.setText(R.id.tv_state,item.getOperationEnum().toString());
         helper.setText(R.id.tv_date,item.getCreatedDate());
 
         Glide.with(mContext)

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.bigkoo.alertview.AlertView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
@@ -56,6 +57,24 @@ public class AddFriendRequestActivity extends BaseActivity {
             loadData();
         });
 
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                AddFriendRequestFullAccount account = (AddFriendRequestFullAccount) adapter.getData().get(position);
+
+                new AlertView.Builder().setContext(getContext())
+                        .setStyle(AlertView.Style.ActionSheet)
+                        .setTitle("请确认")
+                        .setMessage("")
+                        .setCancelText("取消")
+                        .setOthers(new String[]{
+                                "",
+                                ""
+                        })
+                        .build().show();
+
+            }
+        });
     }
 
     void loadData(){

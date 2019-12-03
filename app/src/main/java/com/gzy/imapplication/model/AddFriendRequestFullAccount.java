@@ -1,5 +1,7 @@
 package com.gzy.imapplication.model;
 
+import androidx.annotation.NonNull;
+
 import java.time.LocalDateTime;
 
 public class AddFriendRequestFullAccount {
@@ -78,21 +80,50 @@ public class AddFriendRequestFullAccount {
         this.createdDate = createdDate;
     }
 
-    public String getOperationShowStr() {
-        if (operation == null){
-            return "未操作";
+    public OperationEnum getOperationEnum() {
+        return OperationEnum.get(getOperation());
+    }
+
+    public enum OperationEnum{
+
+        unknown(-1,"未知"),
+        notOperating(0,"未操作"),
+        accepted(1,"已接受"),
+        ignore(2,"忽略"),
+        reject(3,"拒绝");
+
+
+        private int iValue;
+        private String defStr;
+
+        OperationEnum(int iValue,String defStr) {
+            this.iValue = iValue;
+            this.defStr = defStr;
         }
-        switch (operation) {
-            //    未操作
-            case		0:
-                return "未操作";
-            //    接受
-            case		1: return "已接受";
-            //    忽略
-            case		2: return "忽略";
-            //    拒绝
-            case		3: return "拒绝" ;
+
+        public static OperationEnum get(Integer operation) {
+            if (operation == null){
+                return OperationEnum.unknown;
+            }
+            if (operation == 0){
+                return OperationEnum.notOperating;
+            }
+            if (operation == 1){
+                return OperationEnum.accepted;
+            }
+            if (operation == 2){
+                return OperationEnum.ignore;
+            }
+            if (operation == 3){
+                return OperationEnum.reject;
+            }
+            return OperationEnum.unknown;
         }
-        return "未知";
+
+        @NonNull
+        @Override
+        public String toString() {
+            return defStr;
+        }
     }
 }
