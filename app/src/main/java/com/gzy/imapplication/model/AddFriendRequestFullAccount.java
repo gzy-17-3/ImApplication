@@ -77,4 +77,22 @@ public class AddFriendRequestFullAccount {
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
+
+    public String getOperationShowStr() {
+        if (operation == null){
+            return "未操作";
+        }
+        switch (operation) {
+            //    未操作
+            case		0:
+                return "未操作";
+            //    接受
+            case		1: return "已接受";
+            //    忽略
+            case		2: return "忽略";
+            //    拒绝
+            case		3: return "拒绝" ;
+        }
+        return "未知";
+    }
 }

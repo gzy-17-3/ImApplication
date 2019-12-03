@@ -52,21 +52,20 @@ public class AddFriendRequestActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
         swipeRefreshLayout.post(()->{
+            swipeRefreshLayout.setRefreshing(true);
             loadData();
         });
 
     }
 
     void loadData(){
-        KProgressHUD hud = KProgressHUD.create(getContext())
-                .show();
 
         String token = Auth.loadToken(this).getToken();
         ContactsApi.loadAddFriendRequest(token, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 runOnUiThread(()->{
-                    hud.dismiss();
+                    swipeRefreshLayout.setRefreshing(false);
                     Toast.makeText(getContext(), "加载失败："+e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
             }
@@ -75,7 +74,7 @@ public class AddFriendRequestActivity extends BaseActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful()){
                     runOnUiThread(()->{
-                        hud.dismiss();
+                        swipeRefreshLayout.setRefreshing(false);
                         Toast.makeText(getContext(), "加载失败~", Toast.LENGTH_SHORT).show();
                     });
                     return;
@@ -83,7 +82,7 @@ public class AddFriendRequestActivity extends BaseActivity {
                 String jsonString = response.body().string();
                 List<AddFriendRequestFullAccount> accounts = JSON.parseArray(jsonString, AddFriendRequestFullAccount.class);
                 runOnUiThread(()->{
-                    hud.dismiss();
+                    swipeRefreshLayout.setRefreshing(false);
                     adapter.replaceData(accounts);
                 });
             }

@@ -18,12 +18,16 @@ public class AddFriendRequestAdapter extends BaseQuickAdapter<AddFriendRequestFu
 
 
     public AddFriendRequestAdapter(@Nullable List<AddFriendRequestFullAccount> data) {
-        super(R.layout.item_student,data);
+        super(R.layout.item_add_friend_request,data);
     }
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, AddFriendRequestFullAccount item) {
         helper.setText(R.id.tv_name,item.getAccount().getName());
+
+
+        helper.setText(R.id.tv_state,item.getOperationShowStr());
+        helper.setText(R.id.tv_date,item.getCreatedDate());
 
         Glide.with(mContext)
                 .load(item.getAccount().getAvatarUrlString())

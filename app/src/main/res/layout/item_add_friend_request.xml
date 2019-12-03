@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout style="@style/stye_mine_list_item"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/tv_item_icon_note"
+            android:src="@drawable/ic_note"
+            style="@style/stye_mine_list_item.icon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:text="@string/app_name"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:src="@drawable/ic_arrow_right"
+            style="@style/stye_mine_list_item.arrow" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_item_icon_note"
+            android:layout_toRightOf="@id/tv_item_icon_note"
+            android:text="~">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="2019"
+            android:layout_alignLeft="@id/tv_name"
+            android:layout_below="@id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View
+        android:background="@color/colorDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+</LinearLayout>
