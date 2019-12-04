@@ -10,6 +10,7 @@
                     style="@style/stye_mine_list_item.icon"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
+                    android:layout_marginLeft="@dimen/dp_10"
                     />
 
                 <ImageView

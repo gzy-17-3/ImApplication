@@ -2,6 +2,7 @@ package com.gzy.imapplication.module.contacts;
 
 
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,11 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
 import com.gzy.imapplication.module.base.BaseFragment;
 import com.gzy.imapplication.net.ContactsApi;
+import com.gzy.imapplication.net.core.XXModelListCallback;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
@@ -43,6 +46,7 @@ public class ContactsFragment extends BaseFragment {
     private ContactsAdapter adapter;
     private View headerView;
     private TextView tv_newcount;
+    private Integer page = 0;
 
     public ContactsFragment() {
         // Required empty public constructor
@@ -67,9 +71,6 @@ public class ContactsFragment extends BaseFragment {
             jumpAdd();            
         });
 
-
-
-
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -93,7 +94,12 @@ public class ContactsFragment extends BaseFragment {
             jumpAddFriendRequest();
         });
 
-
+        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                loadMore(page + 1);
+            }
+        },recyclerView);
     }
 
     @Override
@@ -144,6 +150,44 @@ public class ContactsFragment extends BaseFragment {
 
     private void loadData() {
 
+        ContactsApi.index(Auth.getTokenValue(getContext()), 0, new XXModelListCallback<Account>(Account.class) {
+            @Override
+            public void onFailure2(Call call, IOException e, ErrType type, String message) {
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponseData(Call call, List<Account> modelList) {
+                swipeRefreshLayout.setRefreshing(false);
+                adapter.setNewData(modelList);
+                page = 0;
+            }
+        });
+    }
+
+    private void loadMore(Integer index){
+        ContactsApi.index(Auth.getTokenValue(getContext()), index, new XXModelListCallback<Account>(Account.class) {
+            @Override
+            public void onFailure2(Call call, IOException e, ErrType type, String message) {
+                Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+                adapter.loadMoreFail();
+            }
+
+            @Override
+            public void onResponseData(Call call, List<Account> modelList) {
+
+                if (modelList.size() <= 0){
+                    adapter.loadMoreEnd();
+                    return;
+                }
+
+                adapter.addData(modelList);
+                page = index;
+
+                adapter.loadMoreComplete();
+            }
+        });
     }
 
 

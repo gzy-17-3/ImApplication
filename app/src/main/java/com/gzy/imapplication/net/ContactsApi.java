@@ -92,4 +92,16 @@ public class ContactsApi {
 
         XXURLUtils.shared.get(url,header,para,callback);
     }
+
+    public static void index(String token,Integer page,Callback callback) {
+
+        Map<String, String> header = new HashMap<>();
+        Map<String, String> para = new HashMap<>();
+
+        header.put("Authorization","Bearer "+token);
+
+        para.put("page",page+"");
+
+        XXURLUtils.shared.get(URLSet.Friend.INDEX,header,para,callback);
+    }
 }

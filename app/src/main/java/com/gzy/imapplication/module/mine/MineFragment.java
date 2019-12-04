@@ -115,7 +115,7 @@ public class MineFragment extends BaseFragment {
     private void refreshUI(Account account) {
         // 从 acc 中获取需要显示的数据， 并且设置到 View 上
 
-        tv_name.setText(account.getName());
+        tv_name.setText(account.getName() + String.format("(%s)", account.getId()));
 
         String urlString = account.getAvatarUrlString();
 
