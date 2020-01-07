@@ -24,9 +24,15 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gzy.imapplication.R;
 import com.gzy.imapplication.core.Auth;
 import com.gzy.imapplication.model.Account;
+import com.gzy.imapplication.model.ChatSession;
 import com.gzy.imapplication.module.base.BaseFragment;
+import com.gzy.imapplication.module.message.ChatActivity;
+import com.gzy.imapplication.module.message.MessageFragment;
 import com.gzy.imapplication.net.ContactsApi;
+import com.gzy.imapplication.net.MessageApi;
+import com.gzy.imapplication.net.core.XXModelCallback;
 import com.gzy.imapplication.net.core.XXModelListCallback;
+import com.gzy.imapplication.net.core.XXNormalCallBack;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
@@ -36,6 +42,10 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+
+import static com.gzy.imapplication.module.message.ChatActivity.KEY_session_id;
+import static com.gzy.imapplication.module.message.ChatActivity.KEY_title;
+import static com.gzy.imapplication.module.message.ChatActivity.KEY_to_id;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,34 +73,35 @@ public class ContactsFragment extends BaseFragment {
 
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.btn_add).setOnClickListener((v)->{
-            jumpAdd();            
+        view.findViewById(R.id.btn_add).setOnClickListener((v) -> {
+            jumpAdd();
         });
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        swipeRefreshLayout.setOnRefreshListener(()->{
+        swipeRefreshLayout.setOnRefreshListener(() -> {
             loadData();
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ContactsAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
-        headerView = View.inflate(getContext(),R.layout.headview_new_cintact,null);
+        headerView = View.inflate(getContext(), R.layout.headview_new_cintact, null);
         tv_newcount = headerView.findViewById(R.id.tv_newcount);
         adapter.addHeaderView(headerView);
 
-        swipeRefreshLayout.post(()->{
+        swipeRefreshLayout.post(() -> {
             loadData();
         });
 
-        headerView.setOnClickListener((v)->{
+        headerView.setOnClickListener((v) -> {
             jumpAddFriendRequest();
         });
 
@@ -99,7 +110,32 @@ public class ContactsFragment extends BaseFragment {
             public void onLoadMoreRequested() {
                 loadMore(page + 1);
             }
-        },recyclerView);
+        }, recyclerView);
+
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Account item = (Account) adapter.getItem(position);
+                MessageApi.createSessionIfneed(Auth.getTokenValue(getContext()), item.getId(), new XXModelCallback<ChatSession>(ChatSession.class) {
+                    @Override
+                    public void onFailure2(Call call, IOException e, ErrType type, String message) {
+                        Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponseData(Call call, ChatSession model) {
+//                        Toast.makeText(getContext(), ""+JSON.toJSONString(model), Toast.LENGTH_SHORT).show();
+                        Bundle para = new Bundle();
+                        ChatSession item = model;
+                        para.putLong(KEY_session_id,item.getId());
+                        para.putLong(KEY_to_id,item.getAccount().getId());
+                        para.putString(KEY_title,item.getAccount().getName());
+
+                        startActivity(ChatActivity.class, para);
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -118,23 +154,23 @@ public class ContactsFragment extends BaseFragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 int vint = 0;
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     String v = response.body().string();
-                    if (!TextUtils.isEmpty(v)){
+                    if (!TextUtils.isEmpty(v)) {
                         try {
                             vint = Integer.parseInt(v);
-                        }catch (Exception e){
+                        } catch (Exception e) {
 
                         }
                     }
                 }
 
                 int finalVint = vint;
-                runOnUiThread(()->{
-                    if (finalVint != 0){
+                runOnUiThread(() -> {
+                    if (finalVint != 0) {
                         tv_newcount.setText(finalVint);
                         tv_newcount.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         tv_newcount.setText("");
                         tv_newcount.setVisibility(View.GONE);
                     }
@@ -145,7 +181,7 @@ public class ContactsFragment extends BaseFragment {
     }
 
     private void jumpAddFriendRequest() {
-        startActivity(new Intent(getContext(),AddFriendRequestActivity.class));
+        startActivity(new Intent(getContext(), AddFriendRequestActivity.class));
     }
 
     private void loadData() {
@@ -154,7 +190,7 @@ public class ContactsFragment extends BaseFragment {
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -166,18 +202,18 @@ public class ContactsFragment extends BaseFragment {
         });
     }
 
-    private void loadMore(Integer index){
+    private void loadMore(Integer index) {
         ContactsApi.index(Auth.getTokenValue(getContext()), index, new XXModelListCallback<Account>(Account.class) {
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
-                Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
                 adapter.loadMoreFail();
             }
 
             @Override
             public void onResponseData(Call call, List<Account> modelList) {
 
-                if (modelList.size() <= 0){
+                if (modelList.size() <= 0) {
                     adapter.loadMoreEnd();
                     return;
                 }

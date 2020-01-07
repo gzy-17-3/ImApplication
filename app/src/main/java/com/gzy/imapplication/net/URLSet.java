@@ -47,6 +47,18 @@ public interface URLSet {
 
     }
 
+    interface ChatSession {
+
+        String PATH =  HOST + "/chat_session";
+
+        String INDEX =  PATH + "/";
+
+    }
 
 
+    interface Chat {
+        String PATH =  HOST + "/chat";
+
+        String INDEX =  PATH + "/";
+    }
 }

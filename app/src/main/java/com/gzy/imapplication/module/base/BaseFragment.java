@@ -1,7 +1,15 @@
 package com.gzy.imapplication.module.base;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
+import com.gzy.imapplication.module.message.ChatActivity;
+
+import java.util.Objects;
 
 public class BaseFragment extends Fragment {
     /**
@@ -49,5 +57,14 @@ public class BaseFragment extends Fragment {
         FragmentActivity activity = getActivity();
         assert activity != null;
         activity.runOnUiThread(action);
+    }
+
+
+    protected void startActivity(Class<?> claz, Bundle bundle) {
+        Intent intent = new Intent(getContext(),claz);
+
+        intent.putExtras(bundle);
+
+        getContext().startActivity(intent);
     }
 }

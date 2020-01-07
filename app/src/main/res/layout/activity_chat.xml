@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:context=".module.contacts.ContactsFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/ll_sendBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorIcons"
+        android:layout_alignParentBottom="true"
+        >
+        <View
+            android:background="@color/colorDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_alignParentEnd="true"
+            android:text="发送"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edt_sendtext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/btn_send"
+            />
+    </RelativeLayout>
+
+    <!--   action bar  操作栏  -->
+    <!--   navigation bar 导航栏  -->
+
+
+    <RelativeLayout
+        android:id="@+id/rl_nav"
+        style="@style/style_navigation_bar">
+
+
+
+        <Button
+            android:background="@drawable/ic_keyboard_backspace_black"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:onClick="onClickBack"
+            >
+
+        </Button>
+
+        <TextView
+            android:id="@+id/nav_title"
+            style="@style/style_navgation_bar_title"
+            android:text="@string/message"></TextView>
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_add"-->
+        <!--            android:layout_width="55dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:background="#0000"-->
+        <!--            android:text="+"-->
+        <!--            android:textColor="@color/colorIcons"-->
+        <!--            android:textSize="@dimen/sp_30" />-->
+    </RelativeLayout>
+
+
+    <!--   RGB  #XXX  #XXXXXX   -->
+    <!--   ARGB  #XXXX #XXXXXXXX   -->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_nav"
+        android:layout_above="@+id/ll_sendBar"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

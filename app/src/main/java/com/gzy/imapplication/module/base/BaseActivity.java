@@ -1,6 +1,8 @@
 package com.gzy.imapplication.module.base;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +53,14 @@ public class BaseActivity extends AppCompatActivity {
                 runOnUiThread(action);
             }
         });
+    }
+
+    protected void startActivity(Class<?> claz, Bundle bundle) {
+        Intent intent = new Intent(getContext(),claz);
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
     public void onClickBack(View view) {

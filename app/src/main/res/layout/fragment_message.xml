@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    tools:context=".module.message.MessageFragment">
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:context=".module.contacts.ContactsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--   action bar  操作栏  -->
+    <!--   navigation bar 导航栏  -->
+
+    <RelativeLayout style="@style/style_navigation_bar">
+
+        <TextView
+            style="@style/style_navgation_bar_title"
+            android:text="@string/message"></TextView>
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_add"-->
+<!--            android:layout_width="55dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:background="#0000"-->
+<!--            android:text="+"-->
+<!--            android:textColor="@color/colorIcons"-->
+<!--            android:textSize="@dimen/sp_30" />-->
+    </RelativeLayout>
+
+
+    <!--   RGB  #XXX  #XXXXXX   -->
+    <!--   ARGB  #XXXX #XXXXXXXX   -->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>
