@@ -90,7 +90,8 @@ public class ChatActivity extends BaseActivity {
         swipeRefreshLayout.post(()->{
             loadData(0L);
 
-            Timer timer = new Timer();
+
+            timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -107,6 +108,17 @@ public class ChatActivity extends BaseActivity {
         });
 
         refreshUI();
+    }
+
+    Timer timer;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     private void sendText() {
@@ -164,6 +176,12 @@ public class ChatActivity extends BaseActivity {
     private void loadMore(Long lastChatid) {
 
         Token token = Auth.loadToken(getContext());
+
+        if (token == null){
+            timer.cancel();
+            timer = null;
+            return;
+        }
 
         MessageApi.loadChatList(token.getToken(), session_id + "", lastChatid + "", new XXModelListCallback<Chat>(Chat.class) {
             @Override

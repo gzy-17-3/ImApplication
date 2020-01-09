@@ -51,6 +51,10 @@ public class Auth {
     }
 
     public static String getTokenValue(Context context) {
-        return loadToken(context).getToken();
+        Token t = loadToken(context);
+        if (t == null) {
+            return null;
+        }
+        return t.getToken();
     }
 }

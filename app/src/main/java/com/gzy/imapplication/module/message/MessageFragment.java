@@ -75,7 +75,8 @@ public class MessageFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
 
         swipeRefreshLayout.post(()->{
-            Timer timer = new Timer();
+
+            timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -103,11 +104,24 @@ public class MessageFragment extends BaseFragment {
 
     }
 
+    Timer timer;
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+    }
 
     private void loadData() {
-//        MessageApi.loadSession(Auth.getTokenValue(getContext()))
-
-        MessageApi.loadSession(Auth.getTokenValue(getContext()), new XXModelListCallback<ChatSession>(ChatSession.class) {
+        String token = Auth.getTokenValue(getContext());
+        if (token == null){
+            timer.cancel();
+            timer = null;
+            return;
+        }
+        MessageApi.loadSession(token, new XXModelListCallback<ChatSession>(ChatSession.class) {
             @Override
             public void onFailure2(Call call, IOException e, ErrType type, String message) {
                 swipeRefreshLayout.setRefreshing(false);

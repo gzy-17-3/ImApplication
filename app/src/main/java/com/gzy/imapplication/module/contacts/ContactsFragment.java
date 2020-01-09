@@ -168,7 +168,7 @@ public class ContactsFragment extends BaseFragment {
                 int finalVint = vint;
                 runOnUiThread(() -> {
                     if (finalVint != 0) {
-                        tv_newcount.setText(finalVint);
+                        tv_newcount.setText(finalVint + "");
                         tv_newcount.setVisibility(View.VISIBLE);
                     } else {
                         tv_newcount.setText("");
